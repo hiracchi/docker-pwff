@@ -1,4 +1,4 @@
-FROM hiracchi/ubuntu-ja:18.04
+FROM hiracchi/ubuntu-ja:18.04.1
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -17,15 +17,19 @@ RUN set -x \
   && apt-get update \
   && apt-get install -y \
      make \
-     python3 \
+     python3 python3-pip \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
+
+RUN set -x \
+  && pip3 install django
 
 # -----------------------------------------------------------------------------
 # entrypoint
 # -----------------------------------------------------------------------------
-COPY docker-entrypoint.sh usage.sh /
+COPY usage.sh /usr/local/bin
 
+RUN set -x \
+  && mkdir -p ${WORKDIR}
 WORKDIR "${WORKDIR}"
-ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["/usage.sh"]
+CMD ["/usr/local/bin/usage.sh"]
