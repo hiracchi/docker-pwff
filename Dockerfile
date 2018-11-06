@@ -22,7 +22,8 @@ RUN set -x \
   && rm -rf /var/lib/apt/lists/*
 
 RUN set -x \
-  && pip3 install django
+  && pip3 install django \
+  && pip3 install django-debug-toolbar
 
 # -----------------------------------------------------------------------------
 # entrypoint
