@@ -33,4 +33,5 @@ COPY usage.sh /usr/local/bin
 RUN set -x \
   && mkdir -p ${WORKDIR}
 WORKDIR "${WORKDIR}"
+EXPOSE 8000
 CMD ["/usr/local/bin/usage.sh"]
