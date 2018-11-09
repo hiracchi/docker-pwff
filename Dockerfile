@@ -23,7 +23,9 @@ RUN set -x \
 
 RUN set -x \
   && pip3 install django \
-  && pip3 install django-debug-toolbar
+  && pip3 install django-debug-toolbar \
+  && pip3 install djangorestframework \
+  && pip3 install django-filter 
 
 # -----------------------------------------------------------------------------
 # entrypoint
